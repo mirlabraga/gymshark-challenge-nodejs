@@ -1,4 +1,4 @@
-const packages = [250, 500, 1000, 2000, 5000];
+const packages = process.env.PACKAGES || [250, 500, 1000, 2000, 5000];
 
 const decomposition = (pack) => {
 
@@ -48,7 +48,7 @@ const decomposition = (pack) => {
     waste = waste%maxValueBefore2;
   }
 
-  return JSON.stringify(result);
+  return result;
 }
 
 
@@ -67,8 +67,12 @@ const getMaxValueBefore = (pack) => {
 }
 
 const reduceResult = (result) => {
-  result = result
-  .sort((a,b) => a.pack-b.pack);
+
+  if (result.length === 1) {
+    return result;
+  }
+
+  result = result.sort((a,b) => a.pack-b.pack);
 
   for (let i = 0; i < result.length - 1;) {
     const sum = result[i].pack + result[i + 1].pack;
@@ -87,21 +91,10 @@ const reduceResult = (result) => {
   return result;
 }
 
-console.log(decomposition(250));
-console.log(decomposition(251));
-console.log(decomposition(500));
-console.log(decomposition(750));
-console.log(decomposition(751));
-console.log(decomposition(1001));
-console.log(decomposition(1251));
-console.log(decomposition(9000));
-console.log(decomposition(12000));
-console.log(decomposition(12001));
+const getMinPackages = (pack) => {
+  const decompositionResult = decomposition(pack);
+  const finalResult = reduceResult(decompositionResult);
+  return finalResult;
+}
 
-// reduce
-
-const result251 = decomposition(251);
-console.log(reduceResult(JSON.parse(result251)));
-
-const result751 = decomposition(751);
-console.log(reduceResult(JSON.parse(result751)));
+module.exports = getMinPackages;

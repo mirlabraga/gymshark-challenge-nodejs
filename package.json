@@ -1,0 +1,27 @@
+{
+  "name": "gymshark-challenge-nodejs",
+  "version": "1.0.0",
+  "description": "gymshark challenge with nodejs",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mirlabraga/gymshark-challenge-nodejs.git"
+  },
+  "keywords": [
+    "gymshark",
+    "challenge",
+    "nodejs"
+  ],
+  "author": "Mirla Chucre <mirlabraga@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mirlabraga/gymshark-challenge-nodejs/issues"
+  },
+  "homepage": "https://github.com/mirlabraga/gymshark-challenge-nodejs#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
