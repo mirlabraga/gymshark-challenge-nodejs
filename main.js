@@ -66,6 +66,27 @@ const getMaxValueBefore = (pack) => {
   return beforeValue;
 }
 
+const reduceResult = (result) => {
+  result = result
+  .sort((a,b) => a.pack-b.pack);
+
+  for (let i = 0; i < result.length - 1;) {
+    const sum = result[i].pack + result[i + 1].pack;
+    if (packages.includes(sum)) {
+      result.shift();
+      result.shift();
+      result.push({
+        pack: sum,
+        quantity: 1
+      });
+      i = 0;
+    } else {
+      break;
+    }
+  }
+  return result;
+}
+
 console.log(decomposition(250));
 console.log(decomposition(251));
 console.log(decomposition(500));
@@ -76,3 +97,11 @@ console.log(decomposition(1251));
 console.log(decomposition(9000));
 console.log(decomposition(12000));
 console.log(decomposition(12001));
+
+// reduce
+
+const result251 = decomposition(251);
+console.log(reduceResult(JSON.parse(result251)));
+
+const result751 = decomposition(751);
+console.log(reduceResult(JSON.parse(result751)));
